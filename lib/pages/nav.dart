@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:g_p/pages/map.dart';
 import 'package:g_p/pages/Home_Screen.dart';
 import 'package:g_p/pages/settings.dart';
+import 'package:g_p/pages/dataTesting.dart';
 
 
 class Nav extends StatefulWidget {
@@ -15,7 +16,8 @@ class _NavState extends State<Nav> {
   List<Widget> _widgetOptions = <Widget>[
     Home_Screen(),
     Map(),
-    settings(),
+    Settings1NotificationsWidget(),
+    TTNDataPage(),
   ];
 
 
@@ -32,15 +34,8 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  Text('GET PARKED',
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Colors.black),
-              ),
 
-      ),
+
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
 
@@ -49,6 +44,7 @@ class _NavState extends State<Nav> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[                 // navigatoion bar items
           BottomNavigationBarItem(
+            backgroundColor: Colors.black,
             icon: Icon(Icons.home),                             // index 1
             label: 'Home',
             ),
@@ -62,8 +58,14 @@ class _NavState extends State<Nav> {
             icon: Icon(Icons.settings),                             // index 3
             label: 'Settings',
             ),
+
+             BottomNavigationBarItem(
+            icon: Icon(Icons.data_array),                             // index 3
+            label: 'TestData',
+            ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white38,
         onTap: _onItemTap,
 
 

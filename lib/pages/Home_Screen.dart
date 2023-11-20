@@ -1,24 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:g_p/format/parkinglots.dart';
-import 'dart:async';
 import 'package:g_p/lots/cbalot1.dart';
 import 'package:g_p/lots/chwlot1.dart';
 import 'package:g_p/lots/chwlot2.dart';
 import 'package:g_p/lots/porta.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-Future<ParkLot> fetchParkLot() async{
-    final response = await http
-    .get(Uri.parse('https://storage.googleapis.com/getparked/lotdata.json'));
-
-    if (response.statusCode == 200) {
-      return ParkLot.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-    }
-    else {
-      throw Exception('Failed to load Parklot');
-          }
-  }
+import 'dart:io';
+import "package:g_p/pages/dataTesting.dart";
 
 
 class Home_Screen extends StatelessWidget {
@@ -26,23 +13,41 @@ class Home_Screen extends StatelessWidget {
     
 
   final controller = TextEditingController();
-  late Future<ParkLot> futureParklot;
 
-  @override
-    void initState() {
-    futureParklot = fetchParkLot();
-  }
+
+
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+        backgroundColor: Colors.black,
+        title:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+                Text('Home',
+                 style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              ),
+              SizedBox(width: 8),
+               Image.network(
+                  'https://storage.googleapis.com/getparked/logo2.png',
+                  width: 125,
+                  height: 1000,
+                  fit: BoxFit.contain,
+                ),
+          ],
+        ),        
+      ),
+
+    
     body: ListView(
   padding: EdgeInsets.symmetric(vertical: 5),
   shrinkWrap: true,
   scrollDirection: Axis.vertical,
   children: [
-   
-   
-   
+
    
     Padding(          // CBA LOT 1
       padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 10),
@@ -81,7 +86,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 5),
                   child: Text(
-                    'CBA lot1',
+                    'CBA Lot 1',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                           fontWeight: FontWeight.bold,
@@ -96,7 +101,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                   child: Text(
-                    '47 AVAILABLE SPOTS',
+                    'X AVAILABLE SPOTS',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                         ),
@@ -115,7 +120,7 @@ class Home_Screen extends StatelessWidget {
       padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 10),
       child: Container(
         width: 100,
-        height: 199,
+        height: 194,
         decoration: BoxDecoration(
           color: Colors.black12,
           borderRadius: BorderRadius.circular(20),
@@ -138,7 +143,7 @@ class Home_Screen extends StatelessWidget {
                   'https://storage.googleapis.com/getparked/CHW%20lot1.jpg',
                   width: 425,
                   height: 141,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
                 ),
               ),
@@ -149,7 +154,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 5),
                   child: Text(
-                    'CHW lot1',
+                    'CHW Lot 1',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                           fontWeight: FontWeight.bold,
@@ -164,7 +169,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                   child: Text(
-                    '47 AVAILABLE SPOTS',
+                    'X AVAILABLE SPOTS',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                         ),
@@ -215,7 +220,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 5),
                   child: Text(
-                    'CHW lot2',
+                    'CHW Lot 2',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                           fontWeight: FontWeight.bold,
@@ -230,7 +235,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                   child: Text(
-                    '47 AVAILABLE SPOTS',
+                    'X AVAILABLE SPOTS',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                         ),
@@ -281,7 +286,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 5),
                   child: Text(
-                    'Port A Lot',
+                    'Portable A Lot',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                           fontWeight: FontWeight.bold,
@@ -296,7 +301,7 @@ class Home_Screen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                   child: Text(
-                    '90 AVAILABLE SPOTS',
+                    'X AVAILABLE SPOTS',
                     style: TextStyle(
                           fontFamily: 'Urbanist',
                         ),

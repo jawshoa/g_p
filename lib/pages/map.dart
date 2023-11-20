@@ -47,30 +47,30 @@ class _MapState extends State<Map> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+                Text('Map',
+                 style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              ),
+              SizedBox(width: 8),
+               Image.network(
+                  'https://storage.googleapis.com/getparked/logo2.png',
+                  width: 125,
+                  height: 1000,
+                  fit: BoxFit.contain,
+                ),
+          ],
+        ),        
+      ),
+
       body: Column(
         children: [
-          Row(children: [
-            Expanded(
-              child: TextFormField(
-                controller: _searchController,
-                textCapitalization: TextCapitalization.words,
-                decoration: InputDecoration(hintText: 'Search by Lot'),
-                onChanged: (value) {
-                  print(value);
-                }
-
-
-
-            ),),
-            IconButton(onPressed: () {
-              
-
-
-            },
-            icon: Icon(Icons.search),
-            ),
-          ],
-          ),
           Expanded(
 
           
